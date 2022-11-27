@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=walletapp
+POSTGRES_USER=luCtKDQgmzfgalTmaSbOyPYQugtwRynW
+POSTGRES_PASSWORD=WHX04vos4XbHX2GWse0pbygIjcC6EBc0I6BnOFVaBWuUoo6bXp1O23EDoL8uQzbi

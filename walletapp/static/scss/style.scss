@@ -1,0 +1,155 @@
+// importing core styling file
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+$color-white: #fff;
+$color-violet: rgb(240, 83, 227);
+* {
+    box-sizing: border-box !important;
+}
+
+.w-20px {
+    width: 20px;
+}
+
+.w-50\% {
+    width: 50% !important;
+}
+
+.w-80\% {
+    width: 80% !important;
+}
+
+.w-100\% {
+    width: 100%;
+}
+
+.w-20\% {
+    width: 20%;
+}
+
+.h-80 {
+    height: 80vh;
+}
+
+.h-100vh {
+    height: 100vh;
+}
+
+.h-40vh {
+    height: 40vh;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-end {
+    justify-content: end;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+.flex-space-around {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-header {
+    background-color: $color-violet;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    h1 {
+        color: $color-white;
+    }
+}
+
+.background-fff {
+    background-color: #fff;
+}
+
+.bordered {
+    border-radius: 12px;
+
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.table-header {
+    width: 100%;
+    background-color: $color-violet;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    h1 {
+        color: $color-white;
+    }
+    padding: 0 20px;
+}
+
+.table-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 90vh;
+}
+
+.table-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    a {
+        margin: 0 10px;
+    }
+}
+
+.table-total {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
+.table-paginator {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    div {
+        margin: 0 .5em;
+    }
+}
