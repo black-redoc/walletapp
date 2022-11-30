@@ -3,9 +3,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ExpensesConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
+    default_auto_field = "django.db.models.BigAutoField"
     name = "walletapp.expenses"
-    verbose_name = _('Expenses')
+    verbose_name = _("Expenses")
 
     def ready(self):
         pass

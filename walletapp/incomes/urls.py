@@ -9,7 +9,7 @@ from walletapp.incomes.views import (
     update_income_view,
 )
 
-app_name = "users"
+app_name = "incomes"
 urlpatterns = [
     path("<int:page_number>/", view=index_view, name="index"),
     path("new/", view=new_income_view, name="new"),

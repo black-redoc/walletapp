@@ -10,9 +10,14 @@
   <script defer src="{% static 'js/new_income.js' %}"></script>
   {% endcompress %}
 <div class="center w-100% h-100vh">
-  <form 
-  class="form-horizontal flex-space-around mt-5 mb-5 bordered background-fff {% if title == 'Update income' %} h-40vh {% else %} h-80 {% endif %}"
-  method="post" action="{% url 'incomes:create' %}"
+  <form
+  class="form-horizontal flex-space-around mt-5 mb-5 bordered bg-white {% if title == 'Update income' %} h-40vh {% else %} h-80 {% endif %}"
+  method="post"
+  {% if title == 'Create incomes' %}
+  action="{% url 'incomes:create' %}"
+  {% else %}
+  action="{% url 'incomes:update' %}"
+  {% endif %}
   >
     <div class="form-header mb-4">
       <h1>{{ title}}</h1>
@@ -36,7 +41,7 @@
         </div>
         {% endif %}
       </div>
-  
+
       <div class="input-control mb-3 w-80% flex justify-end">
         <a class="btn btn-danger" href="{% url 'incomes:index' 1 %}">Cancel</a>
         <span class="w-20px"></span>

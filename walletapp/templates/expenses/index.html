@@ -1,36 +1,38 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags static i18n compress %}
+{% load crispy_forms_tags static i18n compress money %}
 {% block title %}{{ title }}{% endblock %}
 
 
 {% block content %}
 <div class="table-container mt-5 mb-5">
-    <div class="table-header">
-        <p>&nbsp;</p>
+    <div class="table-header bg-red">
+        <div class="flex">total:&nbsp;<h5>{{ total_amount|money }}</h5></div>
         <h1>{{ title }}</h1>
-        <a href="{% url 'incomes:new' %}" class="btn btn-primary">Add income</a>
+        <a href="{% url 'expenses:create' %}" class="btn btn-primary">Add expense</a>
     </div>
     <table class="table">
         <thead>
-          <tr class="bg-light table-striped">
+            <tr class="bg-light table-striped">
             <th scope="col">id</th>
             <th scope="col">Concept</th>
             <th scope="col">Amount</th>
             <th scope="col">Created at</th>
+            <th scope="col">Updated at</th>
             <th scope="col"></th>
-          </tr>
+            </tr>
         </thead>
         <tbody class="table-group-divider">
-            {% for income in incomes %}
+            {% for expense in object_list %}
             <tr>
-            <th scope="row">{{ income.id }}</th>
-            <td>{{ income.concept }}</td>
-            <td>{{ income.amount }}</td>
-            <td>{{ income.created_at }}</td>
+            <th scope="row">{{ expense.id }}</th>
+            <td>{{ expense.concept }}</td>
+            <td>{{ expense.amount|money }}</td>
+            <td>{{ expense.get_full_created_at }}</td>
+            <td>{{ expense.get_full_updated_at }}</td>
             <td>
                 <div class="table-actions">
-                    <a class="btn btn-primary" href="{% url 'incomes:edit' income.id %}">Update</a>
-                    <a class="btn btn-danger" href="{% url 'incomes:delete' income.id %}">Delete</a>
+                    <a class="btn btn-primary" href="{% url 'expenses:update' expense.id %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'expenses:delete' expense.id %}">Delete</a>
                 </div>
             </td>
             </tr>
@@ -38,7 +40,7 @@
             <tr>
                 <th scope="row">Total</td>
                 <th></th>
-                <th scope="row">{{ total }}</td>
+                <th scope="row">{{ total_paginated|money }}</td>
                 <th></th>
                 <th></th>
             </tr>
@@ -47,25 +49,21 @@
     <div class="table-footer w-100%">
         <div class="table-paginator">
             <div>
-                <p class="lead pt-3">page {{ current_page }} of {{ page_count }}</p>
+                <p class="lead pt-3">
+                    page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </p>
             </div>
             <div>
-                {% if current_page != 1 %}
-                    <a href="{% url 'incomes:index' prev_page %}" class="btn btn-light"><</a>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-light"><</a>
                 {% else %}
                     <a class="btn btn-light"><</a>
                 {% endif %}
-                {% if page_count > 1 %}
-                    {% for i in page_list %}
-                        {% if current_page == i %}
-                            <a href="{% url 'incomes:index' i %}" class="btn btn-primary">{{ i }}</a>
-                        {% else %}
-                            <a href="{% url 'incomes:index' i %}" class="btn btn-light">{{ i }}</a>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if current_page != last_page %}
-                    <a href="{% url 'incomes:index' next_page %}" class="btn btn-light">></a>
+                {% for i in paginator.page_range %}
+                    <a href="?page={{ i }}" class="btn btn-light">{{ i }}</a>
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-light">></a>
                 {% else %}
                     <a class="btn btn-light">></a>
                 {% endif %}
@@ -73,5 +71,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

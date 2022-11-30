@@ -2,6 +2,8 @@
 @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
 $color-white: #fff;
 $color-violet: rgb(240, 83, 227);
+$color-red: rgb(214, 46, 130);
+$color-grey-light: #000000a1;
 * {
     box-sizing: border-box !important;
 }
@@ -12,6 +14,10 @@ $color-violet: rgb(240, 83, 227);
 
 .w-50\% {
     width: 50% !important;
+}
+
+.w-60\% {
+    width: 60%;
 }
 
 .w-80\% {
@@ -38,13 +44,29 @@ $color-violet: rgb(240, 83, 227);
     height: 40vh;
 }
 
+.h-100\% {
+    height: 100%;
+}
+
 .flex {
     display: flex;
+}
+
+.br-8px {
+    border-radius: 8px !important;
+}
+.italic {
+    font-style: oblique;
+}
+
+.grey-light {
+    color: $color-grey-light;
 }
 
 .justify-end {
     justify-content: end;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -82,8 +104,8 @@ input[type=number] {
     }
 }
 
-.background-fff {
-    background-color: #fff;
+.bg-white {
+    background-color: $color-white;
 }
 
 .bordered {
@@ -100,18 +122,24 @@ input[type=number] {
     height: 100%;
 }
 
+.background-violet {
+    background-color: $color-violet;
+    color: $color-white;
+}
+
+.bg-red {
+    background-color: $color-red;
+    color: $color-white;
+}
+
 .table-header {
     width: 100%;
-    background-color: $color-violet;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-    h1 {
-        color: $color-white;
-    }
     padding: 0 20px;
 }
 
@@ -123,6 +151,15 @@ input[type=number] {
     width: 100%;
     height: 90vh;
 }
+
+.row1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 
 .table-actions {
     display: flex;
@@ -151,5 +188,12 @@ input[type=number] {
     justify-content: end;
     div {
         margin: 0 .5em;
+    }
+}
+
+div.input-group {
+    span {
+        height: 2.4em;
+        border-radius: 8px !important;
     }
 }

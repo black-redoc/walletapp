@@ -17,7 +17,7 @@ urlpatterns = [
     # User management
     path("users/", include("walletapp.users.urls", namespace="users")),
     path("incomes/", include("walletapp.incomes.urls", namespace="incomes")),
-    path("expenseses/", include("walletapp.expenses.urls", namespace="expenses")),
+    path("expenses/", include("walletapp.expenses.urls", namespace="expenses")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

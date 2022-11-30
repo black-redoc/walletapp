@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from walletapp.expenses.models import Expense
+
+
+@admin.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    list_display = (
+        "concept",
+        "amount",
+    )

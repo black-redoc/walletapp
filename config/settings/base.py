@@ -81,7 +81,6 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "walletapp.incomes",
     "walletapp.expenses",
-
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -198,6 +197,8 @@ FORM_RENDERER = "django.forms.renderers.TemplatesSetting"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
+TEMPLATE_LOADERS = ("django.template.loaders.app_directories.load_template_source",)
+
 # FIXTURES
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
@@ -305,9 +306,7 @@ SOCIALACCOUNT_ADAPTER = "walletapp.users.adapters.SocialAccountAdapter"
 SOCIALACCOUNT_FORMS = {"signup": "walletapp.users.forms.UserSocialSignupForm"}
 # django-compressor
 # ------------------------------------------------------------------------------
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 # https://django-compressor.readthedocs.io/en/latest/quickstart/#installation
 INSTALLED_APPS += ["compressor", "fontawesomefree"]
 STATICFILES_FINDERS += ["compressor.finders.CompressorFinder"]
