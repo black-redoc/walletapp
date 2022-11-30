@@ -4,6 +4,11 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-npm install
+DIRECTORY=/app/node_modules
+
+if [ ! -d "$DIRECTORY" ]; then
+    npm install
+fi
+
 python manage.py migrate
 exec python manage.py runserver_plus 0.0.0.0:8000

@@ -2,17 +2,13 @@ ARG PYTHON_VERSION=3.10-slim-bullseye
 
 # define an alias for the specfic python version used in this file.
 FROM python:${PYTHON_VERSION} as python
-
+RUN ln -sf /bin/bash /bin/sh
+USER root
 # Python build stage
 FROM python as python-build-stage
 
 ARG BUILD_ENVIRONMENT=local
 # install js and css libs
-
-RUN apt-get update && apt-get install --no-install-recommends -y curl
-SHELL ["/bin/bash", "--login", "-c"]
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-RUN nvm install --lts
 
 # Install apt packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -47,9 +43,22 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
   libpq-dev \
   # Translations dependencies
   gettext \
+  git \
+  curl \
+  zip \
+  unzip \
   # cleaning up unused files
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
   && rm -rf /var/lib/apt/lists/*
+
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/root/.fnm" --skip-shell
+RUN export PATH="/root/.fnm/:$PATH"
+RUN eval "`fnm env`"
+RUN /root/.fnm/fnm install --lts
+RUN ln -sf /root/.fnm/aliases/default/bin/node /usr/bin/node
+RUN ln -sf /root/.fnm/aliases/default/bin/npm /usr/bin/npm
+# RUN export PATH="/root/.fnm/aliases/default/bin/:$PATH"
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
 # copy python dependency wheels from python-build-stage
