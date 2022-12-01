@@ -14,7 +14,7 @@ urlpatterns = [
     path("<int:page_number>/", view=index_view, name="index"),
     path("new/", view=new_income_view, name="new"),
     path("create/", view=create_income_view, name="create"),
-    path("edit/<int:id>/", view=edit_income_view, name="edit"),
-    path("update/<int:id>/", view=update_income_view, name="update"),
-    path("delete/<int:id>/", view=delete_incomes_view, name="delete"),
+    path("edit/<int:pk>/", view=edit_income_view, name="edit"),
+    path("update/<int:pk>/", view=update_income_view, name="update"),
+    path("delete/<int:pk>/", view=delete_incomes_view, name="delete"),
 ]

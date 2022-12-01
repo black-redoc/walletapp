@@ -7,19 +7,32 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Income',
+            name="Income",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('concept', models.CharField(max_length=80, verbose_name='Concept')),
-                ('amount', models.BigIntegerField(verbose_name='Amount')),
-                ('slug', models.SlugField(unique=True, verbose_name='Slug')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Created At')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Updated At')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("concept", models.CharField(max_length=80, verbose_name="Concept")),
+                ("amount", models.BigIntegerField(verbose_name="Amount")),
+                ("slug", models.SlugField(unique=True, verbose_name="Slug")),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Created At"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="Updated At"),
+                ),
             ],
         ),
     ]

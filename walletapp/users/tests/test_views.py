@@ -11,11 +11,7 @@ from django.urls import reverse
 from walletapp.users.forms import UserAdminChangeForm
 from walletapp.users.models import User
 from walletapp.users.tests.factories import UserFactory
-from walletapp.users.views import (
-    UserRedirectView,
-    UserUpdateView,
-    user_detail_view,
-)
+from walletapp.users.views import UserRedirectView, UserUpdateView, user_detail_view
 
 pytestmark = pytest.mark.django_db
 

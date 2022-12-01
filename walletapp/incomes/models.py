@@ -13,4 +13,16 @@ class Income(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.concept)
-        super(Income, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
+
+    @property
+    def get_created_at(self) -> str:
+        return self.created_at.strftime("%Y-%m-%d")
+
+    @property
+    def get_full_created_at(self) -> str:
+        return self.created_at.strftime("%Y/%m/%d")
+
+    @property
+    def get_full_updated_at(self) -> str:
+        return self.updated_at.strftime("%Y/%m/%d")
