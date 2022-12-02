@@ -13,16 +13,16 @@ class Expense(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.concept)
-        super(Expense, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     @property
     def get_created_at(self) -> str:
-        return f"{self.created_at.year}-{self.created_at.month}-{self.created_at.day}"
+        return self.created_at.strftime("%Y-%m-%d")
 
     @property
     def get_full_created_at(self) -> str:
-        return f"{self.created_at.day}/{self.created_at.month}/{self.created_at.year}"
+        return self.created_at.strftime("%Y/%m/%d")
 
     @property
     def get_full_updated_at(self) -> str:
-        return f"{self.updated_at.day}/{self.updated_at.month}/{self.updated_at.year}"
+        return self.updated_at.strftime("%Y/%m/%d")

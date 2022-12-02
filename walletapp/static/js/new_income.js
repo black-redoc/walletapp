@@ -3,7 +3,7 @@ const inputs = document.getElementById("inputs")
 
 const current_date = () => {
     const now = new Date()
-    return `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`
+    return `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate() >= 10 ? now.getDate() : '0' + now.getDate()}`
 }
 
 function htmlToElement(html) {
@@ -13,14 +13,14 @@ function htmlToElement(html) {
     return template.content.firstChild;
 }
 
-const inputs_html = current_count => `
+const inputs_html = `
     <div class="input-group mt-2">
-        <span class="input-group-text"><i class="fa-regular fa-align-left"></i></span>
-        <input type="text" name="concept${current_count}" class="form-control" placeholder="Concept" aria-label="concept" required>
+        <span class="input-group-text br-8px"><i class="fa-regular fa-align-left"></i></span>
+        <input type="text" name="concept" class="form-control br-8px" placeholder="Concept" aria-label="concept" required>
         <span class="input-group-text">$</span>
-        <input type="number" name="amount${current_count}" class="form-control" placeholder="0.00" aria-label="amount" min="100" step="0.25" pattern="^\d*(\.\d{0,2})?$" required>
+        <input type="number" name="amount" class="form-control br-8px" placeholder="0.00" aria-label="amount" min="100" step="0.25" pattern="^\d*(\.\d{0,2})?$" required>
         <span class="input-group-text"><i class="fa-regular fa-calendar"></i></span>
-        <input type="date" class="form-control" value="${current_date()}" aria-label="created_at" readonly>
+        <input type="date" class="form-control br-8px" value="${current_date()}" aria-label="created_at" readonly>
     </div>
 `
 const max = 12
@@ -28,8 +28,7 @@ const max = 12
 add_other_income.onclick = (event) => {
     event.preventDefault();
     if (!is_max_income_list(max)) {
-        const count = (Number(localStorage.getItem("income_count")) || 1) + 1
-        inputs.appendChild(htmlToElement(inputs_html(count)))
+        inputs.appendChild(htmlToElement(inputs_html))
         update_localstorage()
         if (is_max_income_list(max)) {
             add_other_income.style.display = "none"

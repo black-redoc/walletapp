@@ -58,6 +58,7 @@ RUN eval "`fnm env`"
 RUN /root/.fnm/fnm install --lts
 RUN ln -sf /root/.fnm/aliases/default/bin/node /usr/bin/node
 RUN ln -sf /root/.fnm/aliases/default/bin/npm /usr/bin/npm
+RUN /usr/bin/npm install -g npm
 # RUN export PATH="/root/.fnm/aliases/default/bin/:$PATH"
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
