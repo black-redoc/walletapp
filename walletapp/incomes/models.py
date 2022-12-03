@@ -21,8 +21,14 @@ class Income(models.Model):
 
     @property
     def get_full_created_at(self) -> str:
-        return self.created_at.strftime("%Y/%m/%d")
+        return self.created_at.strftime("%d/%m/%Y")
 
     @property
     def get_full_updated_at(self) -> str:
-        return self.updated_at.strftime("%Y/%m/%d")
+        return self.updated_at.strftime("%d/%m/%Y")
+
+    def __str__(self):
+        return (
+            f'{{"pk": {self.pk}, "concept": "{self.concept}",'
+            + f'"slug": "{self.slug}", "created_at": "{self.get_full_created_at}"}}'
+        )

@@ -55,10 +55,10 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir "/root/.fnm" --skip-shell
 RUN export PATH="/root/.fnm/:$PATH"
 RUN eval "`fnm env`"
-RUN /root/.fnm/fnm install --lts
+RUN /root/.fnm/fnm install v19.2.0
 RUN ln -sf /root/.fnm/aliases/default/bin/node /usr/bin/node
 RUN ln -sf /root/.fnm/aliases/default/bin/npm /usr/bin/npm
-RUN /usr/bin/npm install -g npm
+
 # RUN export PATH="/root/.fnm/aliases/default/bin/:$PATH"
 
 # All absolute dir copies ignore workdir instruction. All relative dir copies are wrt to the workdir instruction
