@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load money %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-items mt-3 mb-2">
+        <div class="card card-cyan">
+            <span class="money">{{ wallet_amount|money }}</span>
+            <span>Wallet</span>
+        </div>
+
+        <div class="card card-violet">
+            <span class="money">{{ total_incomes|money }}</span>
+            <span>Incomes </span>
+        </div>
+
+        <div class="card card-red">
+            <span class="money">{{ total_expenses|money }}</span>
+            <span>Expenses</span>
+        </div>
+    </div>
+    <div class="historic-transactions">
+        <table class="table">
+            <thead>
+                <tr class="bg-light-table-striped">
+                    <th scope="col">Kind</th>
+                    <th scope="col">Concept</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Created at</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                {% for obj in obj_list %}
+                <tr>
+                    <td>{{ obj.kind }}</td>
+                    <td>{{ obj.concept }}</td>
+                    <td>{{ obj.amount|money }}</td>
+                    <td>{{ obj.get_full_created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
