@@ -9,4 +9,4 @@ class CreditsConfig(AppConfig):
 
     def ready(self):
         # Implicitly connect signal handlers decorated with @receiver.
-        from . import signals  # pylint: disable=unused-import
+        from . import signals  # noqa: F401
