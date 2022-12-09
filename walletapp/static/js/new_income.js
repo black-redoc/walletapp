@@ -15,7 +15,7 @@ function htmlToElement(html) {
 
 const inputs_html = `
     <div class="input-group mt-2">
-        <span class="input-group-text br-8px"><i class="fa-regular fa-align-left"></i></span>
+        <span class="input-group-text br-8px"><i class="fa-solid fa-list"></i></i></span>
         <input type="text" name="concept" class="form-control br-8px" placeholder="Concept" aria-label="concept" required>
         <span class="input-group-text">$</span>
         <input type="number" name="amount" class="form-control br-8px" placeholder="0.00" aria-label="amount" min="100" step="0.25" pattern="^\d*(\.\d{0,2})?$" required>

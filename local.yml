@@ -4,7 +4,15 @@ volumes:
   walletapp_local_postgres_data: {}
   walletapp_local_postgres_data_backups: {}
 
+
 services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./compose/local/nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
   django: &django
     build:
       context: .

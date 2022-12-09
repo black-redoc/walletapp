@@ -11,11 +11,13 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 from .forms import ExpenseForm
 from .models import Expense
 
+MAX_ITEMS_PER_PAGE = 10
+
 
 class ExpenseListView(ListView):
     model = Expense
     template_name = "expenses/index.html"
-    paginate_by = 10
+    paginate_by = MAX_ITEMS_PER_PAGE
     queryset = Expense.objects.all().order_by("-pk")
 
     def get_context_data(self, **kwargs) -> dict[str, Any]:
@@ -24,7 +26,7 @@ class ExpenseListView(ListView):
         total_amount = (
             queryset.only("amount").aggregate(Sum("amount")).get("amount__sum", 0)
         )
-        _, _, queryset, _ = self.paginate_queryset(queryset, 10)
+        _, _, queryset, _ = self.paginate_queryset(queryset, MAX_ITEMS_PER_PAGE)
         total_paginated = queryset.only("amount").aggregate(Sum("amount"))
         total_paginated = total_paginated.get("amount__sum", 0)
         context.update(
@@ -41,7 +43,7 @@ class ExpenseCreateView(CreateView):
     def get_context_data(self, **kwargs) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         current_date = datetime.now()
-        current_date = f"{current_date.year}-{current_date.month}-{current_date.day}"
+        current_date = current_date.strftime("%Y-%m-%d")
         context.update(title="Create expenses", current_date=current_date)
         return context
 

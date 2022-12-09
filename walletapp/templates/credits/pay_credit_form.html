@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags static i18n compress money %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'scss/new_expense.scss' %}" />
+{% endcompress %}
+
+<div class="center w-100% h-100vh">
+<form
+class="form-horizontal flex-space-around mt-5 mb-5 bordered bg-white h-50vh w-60%"
+method="POST"
+action="{% url 'credits:pay' credit.pk %}">
+    <div class="form-header mb-4">
+        <h1>{{ title}}</h1>
+    </div>
+    {% csrf_token %}
+    <div class="form-body">
+        <div class="mb-3 w-80%">
+            <input type="hidden" name="pk" value="{{ credit.pk }}">
+            <div class="mt-4">
+                <div class="input-group">
+                    <span class="input-group-text br-8px"><i class="fa-solid fa-list"></i></span>
+                    <input type="text" name="concept" class="form-control br-8px" placeholder="Concept" value="{{ credit.concept }}" readonly>
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="input-group" title="credit amount">
+                    <span class="input-group-text bg-violet-light">
+                        <i class="fa-regular fa-credit-card"></i>
+                    </span>
+                    <input type="number" name="amount" class="bc-violet form-control br-8px" placeholder="0.00" min="100" value="{{ credit.amount }}" step="0.25" pattern="^\d*(\.\d{0,2})?$" readonly>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <div class="input-group" title="payment amount">
+                    <span class="input-group-text ph-15px bg-cyan">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                    </span>
+                    <input type="number" name="payment" class="bc-cyan form-control br-8px" placeholder="0.00" min="100" value="{{ credit.amount }}" step="0.25" min="100" max="{{ credit.amount }}" pattern="^\d*(\.\d{0,2})?$" required>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <div class="input-group">
+                    <span class="input-group-text br-8px">
+                        <i class="fa-regular fa-calendar"></i>
+                    </span>
+                    <input type="date" name="created_at" class="form-control br-8px" value="{{ credit.get_created_at }}" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-control mb-3 w-80% flex justify-end">
+            <a class="btn btn-danger" href="{% url 'credits:index' %}">Cancel</a>
+            <span class="w-20px"></span>
+            <button type="submit" class="btn btn-primary">
+                Pay
+            </button>
+        </div>
+    </div>
+</form>
+</div>
+{% endblock %}
