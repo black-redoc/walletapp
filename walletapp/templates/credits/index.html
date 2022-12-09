@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags static i18n compress money %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="table-container mt-5 mb-5">
+    <div class="table-header bg-red">
+        <div class="flex">total:&nbsp;<h5>{{ total_amount|money }}</h5></div>
+        <h1>{{ title }}</h1>
+        <a href="{% url 'credits:create' %}" class="btn btn-primary">Add credit</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="bg-light table-striped">
+            <th scope="col">id</th>
+            <th scope="col">Concept</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Created at</th>
+            <th scope="col">Updated at</th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for credit in object_list %}
+            <tr>
+            <th scope="row">{{ credit.id }}</th>
+            <td>{{ credit.concept }}</td>
+            <td>{{ credit.amount|money }}</td>
+            <td>{{ credit.get_full_created_at }}</td>
+            <td>{{ credit.get_full_updated_at }}</td>
+            <td>
+                <div class="table-actions">
+                    <a class="btn btn-primary" href="{% url 'credits:update' credit.id %}">Update</a>
+                    <a class="btn btn-danger" href="{% url 'credits:pay' credit.id %}">Pay</a>
+                </div>
+            </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row">Total</td>
+                <th></th>
+                <th scope="row">{{ total_amount_per_page|money }}</td>
+                <th></th>
+                <th></th>
+            </tr>
+        </tbody>
+    </table>
+    <div class="table-footer w-100%">
+        <div class="table-paginator">
+            <div>
+                <p class="lead pt-3">
+                    page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </p>
+            </div>
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-light"><</a>
+                {% else %}
+                    <a class="btn btn-light"><</a>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <a class="btn btn-primary">{{ i }}</a>
+                    {% else %}
+                        <a href="{% url 'incomes:index' i %}" class="btn btn-light">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" class="btn btn-light">></a>
+                {% else %}
+                    <a class="btn btn-light">></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

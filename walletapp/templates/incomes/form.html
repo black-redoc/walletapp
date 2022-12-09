@@ -27,14 +27,14 @@
         <div id="inputs">
           <div class="input-group">
             {% if income %}
-            <span class="input-group-text br-8px"><i class="fa-regular fa-align-left"></i></span>
+            <span class="input-group-text br-8px"><i class="fa-solid fa-list"></i></i></span>
             <input type="text" name="concept" class="form-control br-8px" placeholder="Concept" value="{{ income.concept }}" required>
             <span class="input-group-text">$</span>
             <input type="number" name="amount" class="form-control br-8px" placeholder="0.00" min="100" value="{{ income.amount }}" step="0.25" pattern="^\d*(\.\d{0,2})?$" required>
             <span class="input-group-text br-8px"><i class="fa-regular fa-calendar"></i></span>
             <input type="date" name="created_at" class="form-control br-8px" value="{{ income.get_created_at }}" readonly>
             {% else %}
-            <span class="input-group-text br-8px"><i class="fa-regular fa-align-left"></i></span>
+            <span class="input-group-text br-8px"><i class="fa-solid fa-list"></i></span>
             <input type="text" name="concept" class="form-control br-8px" placeholder="Concept" required>
             <span class="input-group-text">$</span>
             <input type="number" name="amount" class="form-control br-8px" placeholder="0.00" min="100" step="0.25" pattern="^\d*(\.\d{0,2})?$" required>

@@ -1,5 +1,4 @@
-from functools import reduce
-from operator import iconcat
+from random import shuffle
 from typing import Any
 
 
@@ -28,9 +27,10 @@ def get_total_amount(sequence) -> int:
     return sum(map(lambda element: element.amount, sequence))
 
 
-def get_flatten_lists(*sequences: list[Any]) -> list[Any]:
+def get_flatten_lists(a, b, c):
     """
     Get many lists flatten to render in dashboard template togeter.
     """
-    obj_list = zip(*sequences)
-    return reduce(iconcat, obj_list, [])
+    obj_list = list(a) + list(b) + list(c)
+    shuffle(obj_list)
+    return obj_list

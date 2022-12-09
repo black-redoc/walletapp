@@ -1,8 +1,11 @@
 {% extends "base.html" %}
-{% load money %}
+{% load money compress static %}
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+{% compress css %}
+<link rel="stylesheet" type="text/x-scss" href="{% static 'scss/dashboard.scss' %}" />
+{% endcompress %}
 <div class="dashboard">
     <div class="dashboard-items mt-3 mb-2">
         <div class="card card-cyan">
@@ -12,12 +15,17 @@
 
         <div class="card card-violet">
             <span class="money">{{ total_incomes|money }}</span>
-            <span>Incomes </span>
+           <span>Incomes </span>
         </div>
 
         <div class="card card-red">
             <span class="money">{{ total_expenses|money }}</span>
             <span>Expenses</span>
+        </div>
+
+        <div class="card card-orange">
+            <span class="money">{{ total_credits|money }}</span>
+            <span>Credits</span>
         </div>
     </div>
     <div class="historic-transactions">

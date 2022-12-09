@@ -1,0 +1,9 @@
+body {
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 1200px) {
+    body {
+        overflow: visible;
+    }
+}
