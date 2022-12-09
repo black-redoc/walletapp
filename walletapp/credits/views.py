@@ -3,10 +3,10 @@ from typing import Any
 
 from django.contrib import messages
 from django.db.models import Sum
-from django.http import Http404, HttpRequest
-from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.urls import reverse
 from django.db.models.manager import BaseManager
+from django.http import HttpRequest
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse
 from django.views.generic import CreateView, ListView, UpdateView
 
 from .forms import CreditForm
@@ -46,7 +46,7 @@ class CreditCreateView(CreateView):
     form_class = CreditForm
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        context = super(CreditCreateView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         current_date = datetime.now().strftime("%Y-%m-%d")
         context.update(title="Create credit", current_date=current_date)
         return context

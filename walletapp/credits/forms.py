@@ -1,8 +1,7 @@
 from django import forms
-from django.utils.safestring import mark_safe
 
+from .choices import CREDIT_ACTIVE, CREDIT_STATUS_CHOICES
 from .models import Credit
-from .choices import CREDIT_STATUS_CHOICES, CREDIT_ACTIVE
 
 
 class CreditForm(forms.ModelForm):

@@ -1,6 +1,6 @@
 from django.contrib.messages import get_messages
 from django.shortcuts import reverse
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 
 from walletapp.credits.models import Credit
 
@@ -73,7 +73,9 @@ class CreditViewTests(TestCase):
 
     def test_update_nonexistent_credit_then_return_404(self):
         non_existent_pk = 123456
-        response = self.client.get(reverse("credits:update", kwargs={"pk": non_existent_pk}))
+        response = self.client.get(
+            reverse("credits:update", kwargs={"pk": non_existent_pk})
+        )
 
         self.assertEqual(response.status_code, 404)
 

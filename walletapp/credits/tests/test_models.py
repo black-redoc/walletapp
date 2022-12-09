@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from walletapp.credits.models import Credit
 
 TEST_CONCEPT = "test_concept"
