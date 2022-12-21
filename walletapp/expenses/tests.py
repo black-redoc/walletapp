@@ -20,7 +20,6 @@ class ExpenseListTests(TestCase):
             [
                 Expense(
                     concept=str(uuid4()),
-                    slug=str(uuid4()),
                     amount=randrange(MIN_AMOUNT, MAX_AMOUNT),
                 )
                 for _ in range(TOTAL_EXPENSES_BY_DEFAULT)

@@ -11,12 +11,10 @@ class CreditViewTests(TestCase):
     def setUp(self):
         TEST_CONCEPT = "test_concept_"
         TEST_AMOUNT = 100
-        TEST_SLUG = "test_slug_"
         self.client = Client()
         self.credits = [
             Credit(
                 concept=TEST_CONCEPT + str(i),
-                slug=TEST_SLUG + str(i),
                 amount=TEST_AMOUNT,
             )
             for i in range(TOTAL_CREDITS_COUNT)

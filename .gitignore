@@ -277,3 +277,6 @@ walletapp/media/
 .env
 .envs/*
 !.envs/.local/
+
+## Javascript
+package-lock.json
