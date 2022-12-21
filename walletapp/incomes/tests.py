@@ -21,7 +21,6 @@ class IncomeListTests(TestCase):
             [
                 Income(
                     concept=str(uuid4()),
-                    slug=str(uuid4()),
                     amount=randrange(MIN_AMOUNT, MAX_AMOUNT),
                 )
                 for _ in range(TOTAL_INCOMES_BY_DEFAULT)

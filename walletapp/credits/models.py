@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
 from .choices import CREDIT_ACTIVE, CREDIT_STATUS_CHOICES
@@ -8,7 +7,6 @@ from .choices import CREDIT_ACTIVE, CREDIT_STATUS_CHOICES
 class Credit(models.Model):
     concept = models.CharField(_("Concept"), max_length=80)
     amount = models.BigIntegerField(_("Amount"))
-    slug = models.CharField(_("Slug"), unique=True, max_length=80)
     status = models.CharField(
         _("status"),
         choices=CREDIT_STATUS_CHOICES,
@@ -22,11 +20,6 @@ class Credit(models.Model):
         if not amount_payment <= self.amount:
             raise ValueError("The amount is less thant the payment value.")
         self.amount -= amount_payment
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.concept)
-        super().save(*args, **kwargs)
 
     @property
     def get_created_at(self) -> str:
@@ -43,6 +36,6 @@ class Credit(models.Model):
     def __str__(self):
         return (
             f'{{"pk": {self.pk}, "concept": "{self.concept}",'
-            + f'"slug": "{self.slug}", "created_at": "{self.get_full_created_at}",'
+            + f'"created_at": "{self.get_full_created_at}",'
             + f'"status": "{self.status}"}}'
         )

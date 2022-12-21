@@ -23,15 +23,9 @@ class DashboardViewTests(TestCase):
         income_amount = 1000
         expense_amount = 500
         credit_amount = 100
-        income = Income.objects.create(
-            concept="test_1", slug="test_slug_1", amount=income_amount
-        )
-        expense = Expense.objects.create(
-            concept="test_2", slug="test_slug_2", amount=expense_amount
-        )
-        credit = Credit.objects.create(
-            concept="test_3", slug="test_slug_3", amount=credit_amount
-        )
+        income = Income.objects.create(concept="test_1", amount=income_amount)
+        expense = Expense.objects.create(concept="test_2", amount=expense_amount)
+        credit = Credit.objects.create(concept="test_3", amount=credit_amount)
 
         response = self.client.get(reverse("dashboard:index"))
         obj_list = response.context["obj_list"]

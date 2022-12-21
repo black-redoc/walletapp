@@ -14,13 +14,13 @@
     class="form-horizontal flex-space-around mt-5 mb-5 bordered bg-white w-60%">
     {% csrf_token %}
     <div class="form-header bg-red mb-4">
-        <h1>Delete {{ object.slug }}?</h1>
+        <h1>Delete {{ object.concept }}?</h1>
     </div>
     <div class="form-body">
         <div class="mb-3 center h-100%">
             <div class="column">
                 <h4>Are you sure do you want to delete
-                    <span class="italic grey-light">{{ object.slug }}</span>
+                    <span class="italic grey-light">{{ object.concept }}</span>
                     expense?
                 </h4>
 

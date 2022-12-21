@@ -4,13 +4,10 @@ from walletapp.credits.models import Credit
 
 TEST_CONCEPT = "test_concept"
 TEST_AMOUNT = 100
-TEST_SLUG = "test_slug"
 
 
 def create_test_credit_model() -> Credit:
-    return Credit.objects.create(
-        concept=TEST_CONCEPT, amount=TEST_AMOUNT, slug=TEST_SLUG
-    )
+    return Credit.objects.create(concept=TEST_CONCEPT, amount=TEST_AMOUNT)
 
 
 class CreditsModelTests(TestCase):
